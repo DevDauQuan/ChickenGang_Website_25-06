@@ -1,0 +1,7 @@
+https://github.com/DevDauQuan/ChickenGang_Project_LTW.git
+
+// Link sign-in with google 
+http://www.codedigest.com/posts/13/integrate-google-gmail-authentication-in-aspnet-mvc-50---oauth-20
+
+// link github sign-in with facebook
+https://github.com/teduinternational/onlineshop/blob/master/OnlineShop/Controllers/UserController.cs?fbclid=IwAR3XzTNPdA3DD_V3dlRq4KzvJVmJsMYSsgDe8Gg6E4vfPNxRlHGFAXlA5HQ

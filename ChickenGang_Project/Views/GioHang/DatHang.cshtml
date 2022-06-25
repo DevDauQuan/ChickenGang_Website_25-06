@@ -1,0 +1,295 @@
+﻿@model IEnumerable<ChickenGang_Project.Models.GioHang>
+
+@{
+    ViewBag.Title = "DatHang";
+    Layout = "~/Views/Layout/DetailLayout.cshtml";
+}
+
+<h2>đơn Hàng</h2>
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css">
+
+<h2 style="font-size: 20px; margin-top: 180px;"><a href="@Url.Action("Index", "Home")">Trang chủ</a> > <a href="@Url.Action("GioHang", "GioHang")">Giỏ Hàng</a> > <a href="@Url.Action("DatHang", "GioHang")">Thanh Toán</a></h2>
+
+<div class="container">
+
+    <!-- Start row -->
+    <div class="row">
+        <!-- Start col -->
+        <div class="col-md-12 col-lg-12 col-xl-12">
+            <div class="card m-b-30" style="border:none;">
+                <div class="row justify-content-center">
+                    <div class="">
+                        <div class="cart-container">
+                            <div class="cart-head">
+                                <div class="table-responsive">
+                                    <table class="table table-borderless">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col" style="font-size:20px;">#</th>
+                                                <th scope="col" style="font-size:20px;">Hành động</th>
+                                                <th scope="col" style="font-size:20px;">Sản phẩm</th>
+                                                <th scope="col" style="font-size:20px;">Tên sản phầm</th>
+                                                <th scope="col" style="font-size:20px;">Số lượng</th>
+                                                <th scope="col" style="font-size:20px;">Đơn giá</th>
+                                                <th scope="col" class="text-right" style="font-size:20px;">Thành tiền</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in Model)
+
+                                            {
+                                                <tr>
+                                                    <th scope="row" style="font-size:20px;">1</th>
+                                                    <td><a href="#" class="text-danger" style="font-size:20px;"><i class="ri-delete-bin-3-line"></i></a></td>
+                                                    <td><img src="~/@item.hinh" class="img-fluid" width="200" alt="product"></td>
+                                                    <td style="font-size:20px;">@Html.DisplayFor(modelItem => item.ten)</td>
+                                                    <td>
+                                                        <div class="form-group mb-0">
+                                                            <input type="number" class="form-control cart-qty" name="cartQty1" id="cartQty1" value="@item.isoluong">
+                                                        </div>
+                                                    </td>
+                                                    <td style="font-size:20px;">@item.giaban</td>
+                                                    <td class="text-right" style="font-size:20px;">@item.dThanhtien</td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="cart-body">
+                                <div class="row">
+                                    <div class="col-md-12 order-2 order-lg-1 col-lg-5 col-xl-6">
+                                        <div class="order-note">
+                                            <div>
+                                               
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 order-1 order-lg-2 col-lg-7 col-xl-6">
+                                        <div class="order-total table-responsive ">
+                                            <table class="table table-borderless text-right">
+                                                <tbody style="font-size:16px; ">
+                                                    <tr>
+                                                        <td>Tổng hóa đơn :</td>
+                                                        <td>@ViewBag.TongTien VNĐ</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Shipping :</td>
+                                                        <td>0.00 VNĐ</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td class="f-w-7 font-18"><h4>Thanh Toán :</h4></td>
+                                                        <td class="f-w-7 font-18"><h4>@ViewBag.TongTien VNĐ</h4></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@using ChickenGang_Project.Models;
+<Center>
+
+    <h2 >Thông tin đặt hàng</h2>
+</Center>
+@{
+    ThanhVien kh = (ThanhVien)Session["TaiKhoan"];
+}
+@if (kh != null)
+{
+    <div style="margin-left:400px;">
+
+        <table style="padding:4px;">
+            @using (Html.BeginForm())
+            {
+
+                @Html.ValidationSummary(true)
+
+                <tr style="height:40px">
+                    <td style="font-size:16px;">Họ tên khách hàng: </td>
+                    <td style="font-weight: bold; font-size: 16px"> @kh.HoTen</td>
+                </tr>
+                <tr style="height:40px">
+                    <td style="font-size:16px" ;>Email: </td>
+                    <td style="font-weight: bold; font-size: 16px"> @kh.Email</td>
+                </tr>
+                <tr style="height:40px">
+                    <td style="font-size:16px" ;>Địa chỉ: </td>
+                    <td style="font-weight: bold; font-size: 16px">
+                        <input class="form-control text-box single-line input-validation-error"
+                               data-val="true" data-val-required="Phải nhập địa chỉ!"
+                               id="diachigiao" name="diachigiao" type="text" value="@kh.DiaChi" required>
+                    </td>
+                </tr>
+                <tr style="height:40px">
+                    <td style="font-size:16px" ;>Số điện thoại: </td>
+                    <td style="font-weight: bold; font-size: 16px">
+                        <input class="form-control text-box single-line input-validation-error"
+                               data-val="true" data-val-required="Phải nhập số điện thoại!"
+                               id="sdt2" name="sdt2" type="text" value="@kh.SoDienThoai" required>
+                    </td>
+                </tr>
+                <tr style="height:40px">
+                    <td style="font-size:16px">Ngày đặt: </td>
+                    <td style="font-weight: bold; font-size: 16px">@DateTime.Now.ToShortDateString()</td>
+                </tr>
+                <tr style="height:40px">
+                    <td style="font-size:16px">Ngày giao: </td>
+                    <td style="font-weight: bold; font-size: 16px">
+                        <input type="date" name="NgayGiao2" required />
+                    </td>
+                </tr>
+
+
+                
+                <tr style="height:40px">
+
+                    <td style="font-weight: bold; font-size: 16px">
+                        <div class="cart-footer text-right">
+                            <div style="text-align:left">
+                                <p>Chọn phương thức thanh toán</p>
+                                <input type="radio" id="momo" name="pay" value="MoMo" checked>
+                                <label for="momo">Thanh toán bằng ví MoMo</label><br>
+                                <input type="radio" id="cod" name="pay" value="COD">
+                                <label for="cod">Thanh toán khi nhận hàng</label>
+                            </div>
+                        </div>
+                        <input type="submit" value="Xác nhận" class="btn btn-success" style="font-size:16px" />
+                    </td>
+                </tr>
+
+            }
+
+        </table>
+    </div>
+
+}
+else
+{
+<table align="center">
+    @using (Html.BeginForm())
+    {
+
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            <label for="TenKH" style="font-size:16px;">Họ và Tên người nhận:</label>
+            <textarea class="form-control" name="tenkh" id="TenKH" rows="1" placeholder="Nhập Tên của bạn" style="font-size:16px;"></textarea>
+
+            <p style="color:red;" id="Tb_TenKH"></p>
+        </div>
+
+        <div class="form-group">
+            <label for="DiaChi" style="font-size:16px;">Địa chỉ:</label>
+            <textarea class="form-control" name="diachigiao" id="DiaChi" rows="2" placeholder="Nhập địa chỉ nhận hàng" style="font-size:16px;"></textarea>
+            <p style="color:red;" id="Tb_DiaChi"></p>
+
+        </div>
+
+        <div class="form-group">
+            <label for="Email" style="font-size:16px;">Email:</label>
+            <textarea class="form-control" name="email" id="Email" rows="1" placeholder="Nhập Email của bạn" style="font-size:16px;"></textarea>
+            <p style="color:red;" id="Tb_Email"></p>
+
+        </div>
+
+        <div class="form-group">
+            <label for="SoDienThoai" style="font-size:16px;">Số Điện Thoại:</label>
+            <textarea class="form-control" name="sdt" id="SoDienThoai" rows="1" placeholder="Nhập SĐT người nhận" style="font-size:16px;"></textarea>
+            <p style="color:red;" id="Tb_SoDienThoai"></p>
+
+        </div>
+        <div class="form-group d-flex" style="justify-content: space-evenly">
+
+            <p style="font-size:16px;">Ngày đặt: </p>
+            <p style="font-weight: bold; font-size: 16px;">@DateTime.Now.ToShortDateString()</p>
+
+
+            <p style="font-size:16px;">Ngày giao: </p>
+            <p style="font-weight: bold; font-size:16px;">
+                <input type="date" name="NgayGiao" required />
+            </p>
+
+
+        </div>
+
+
+        <div class="cart-footer text-right">
+            <div style="text-align:left">
+                <p>Chọn phương thức thanh toán</p>
+                <input type="radio" id="momo" name="pay" value="MoMo" checked>
+                <label for="momo">Thanh toán bằng ví MoMo</label><br>
+                <input type="radio" id="cod" name="pay" value="COD">
+                <label for="cod">Thanh toán khi nhận hàng</label>
+            </div>
+
+            <input type="submit" value="Xác nhận" class="btn btn-success" style="font-size:18px" id="btnDatHang" />
+        </div>
+
+
+
+    }
+</table>
+}
+
+
+<script>
+    $("#btnDatHang").click(function () {
+        var loi = 0;
+        if ($("#TenKH").val() == "") {
+            $("#Tb_TenKH").text("Vui lòng điền thông tin yêu cầu!!");
+            loi++;
+        }
+        else {
+
+            $("#Tb_TenKH").text("");
+
+        }
+
+        if ($("#DiaChi").val() == "") {
+            $("#Tb_DiaChi").text("Vui lòng điền thông tin yêu cầu!!");
+            loi++;
+        }
+        else {
+
+            $("#Tb_DiaChi").text("");
+
+        }
+
+        if ($("#Email").val() == "") {
+            $("#Tb_Email").text("Vui lòng điền thông tin yêu cầu!!");
+            loi++;
+        }
+        else {
+
+            $("#Tb_Email").text("");
+
+        }
+
+        if ($("#SoDienThoai").val() == "") {
+            $("#Tb_SoDienThoai").text("Vui lòng điền thông tin yêu cầu!!");
+            loi++;
+        }
+        else {
+
+            $("#Tb_TenKH").text("");
+
+        }
+
+        if (loi != 0) {
+            return false;
+        }
+    });
+</script>
