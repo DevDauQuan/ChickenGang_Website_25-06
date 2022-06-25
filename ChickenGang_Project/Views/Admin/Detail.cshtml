@@ -23,6 +23,11 @@
                     <p class="lead">@Html.DisplayFor(model => model.Mota2)</p>
                     <br />
                     <p class="lead">@Html.DisplayFor(model => model.Mota3)</p>
+                    @if (Model.DaXoa.Equals(1))
+                    {
+                        <br />
+                        <h3 class="lead" style="color:red">Sản phẩm đã ngưng phục vụ</h3>
+                    }
 
 
                 </div>

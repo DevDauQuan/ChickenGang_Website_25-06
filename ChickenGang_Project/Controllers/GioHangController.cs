@@ -35,7 +35,7 @@ namespace ChickenGang_Project.Controllers
                 Response.StatusCode = 404;
                 return null;
             }
-            sp.SoLanMua++;
+            
             //Lấy giỏ hàng
             List<GioHang> lstGioHang = Laygiohang();
 
@@ -129,6 +129,7 @@ namespace ChickenGang_Project.Controllers
                 if (sp.SoLuongTon < sanpham.isoluong)
                 {
                     ViewBag.soluong = "Số lượng " + sp.TenSP + " không đủ!!";
+                    
                     sanpham.isoluong = 1;
                     return View("GioHang");
                 }
@@ -199,6 +200,7 @@ namespace ChickenGang_Project.Controllers
                     ctdh.DonGia = (decimal)item.giaban;
                     s = data.SanPhams.Single(n => n.MaSP == item.id);
                     s.SoLuongTon -= ctdh.SoLuong;
+                    s.SoLanMua++;
                     data.SaveChanges();
                     data.ChiTietDonDats.Add(ctdh);
 
@@ -240,6 +242,7 @@ namespace ChickenGang_Project.Controllers
                     ctdh.DonGia = (decimal)item.giaban;
                     s = data.SanPhams.Single(n => n.MaSP == item.id);
                     s.SoLuongTon -= ctdh.SoLuong;
+                    s.SoLanMua++;
                     data.SaveChanges();
                     data.ChiTietDonDats.Add(ctdh);
 

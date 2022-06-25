@@ -39,36 +39,36 @@
 
                                             @if (Model == null || Model.Count == 0)
                                             {
-                                                <Center>Chưa có sản phẩm nào được thêm vào giỏ hàng</Center>
+                                                
                                             }
                                             else
                                             {
                                                 int count = 1;
                                                 foreach (var item in Model)
                                                 {
-                                        <tr>
-                                            <th scope="row" style="font-size:20px;">@count</th>
-                                            @using (Html.BeginForm("CapnhatGiohang", "GioHang", new { @id = item.id }))
-                                            {
-                                               
-                                                <td>
-                                                    <a href="@Url.Action("XoaGioHang", "GioHang", new { @id = item.id, @strURL = Request.Url.ToString()})" class="text-danger" style="font-size: 20px; margin: 0 16px;"><i class="ri-delete-bin-3-line"></i></a>
-                                                    <input type="submit" value="Cập nhật" class="btn btn-info" />
-                                                </td>
+                                                    <tr>
+                                                        <th scope="row" style="font-size:20px;">@count</th>
+                                                        @using (Html.BeginForm("CapnhatGiohang", "GioHang", new { @id = item.id }))
+                                                        {
 
-                                                <td><img src="~/@item.hinh" class="img-fluid" width="150" alt="product"></td>
-                                                <td style="font-size:20px;">@item.ten</td>
-                                                <td>
-                                                    <div class="form-group mb-0">
-                                                        <input type="number" class="form-control cart-qty" min="1" name="txtSolg" id="txtSolg" value="@item.isoluong" style="max-width:70px">
-                                                    </div>
-                                                </td>
-                                                <td style="font-size:20px;">@item.giaban.ToString("#,##") VNĐ</td>
-                                                <td class="text-right" style="font-size:20px;">@item.dThanhtien.ToString("#,##") VNĐ</td>
+                                                            <td>
+                                                                <a href="@Url.Action("XoaGioHang", "GioHang", new { @id = item.id, @strURL = Request.Url.ToString()})" class="text-danger" style="font-size: 20px; margin: 0 16px;"><i class="ri-delete-bin-3-line"></i></a>
+                                                                <input type="submit" value="Cập nhật" class="btn btn-info" />
+                                                            </td>
 
-                                            }
+                                                            <td><img src="~/@item.hinh" class="img-fluid" width="150" alt="product"></td>
+                                                            <td style="font-size:20px;">@item.ten</td>
+                                                            <td>
+                                                                <div class="form-group mb-0">
+                                                                    <input type="number" class="form-control cart-qty" min="1"   name="txtSolg" id="txtSolg" value="@item.isoluong" style="max-width:70px">
+                                                                </div>
+                                                            </td>
+                                                            <td style="font-size:20px;">@item.giaban.ToString("#,##") VNĐ</td>
+                                                            <td class="text-right" style="font-size:20px;">@item.dThanhtien.ToString("#,##") VNĐ</td>
 
-                                        </tr>
+                                                        }
+
+                                                    </tr>
                                                     count++;
                                                 }
 
@@ -80,14 +80,14 @@
                             <div class="cart-body">
                                 <div class="row">
                                     <div class="col-md-12 order-2 order-lg-1 col-lg-5 col-xl-6">
-                                        
+
                                     </div>
                                     <div class="col-md-12 order-1 order-lg-2 col-lg-7 col-xl-6">
                                         <div class="order-total table-responsive ">
                                             <table class="table table-borderless text-right">
                                                 <tbody style="font-size:16px; ">
-                                                    <tr
-                                                        ><td class="f-w-7 font-18">@ViewBag.soluong</td>
+                                                    <tr>
+                                                        <td class="f-w-7 font-18" style="color:red;font:bold">@ViewBag.soluong</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Tổng hóa đơn :</td>
@@ -110,12 +110,20 @@
                             </div>
                             @using (@Html.BeginForm())
                             {
-                        <div class="cart-footer text-right">
-                            <a href="~/SanPham/D_SanPham" class="btn btn-info my-1" style="font-size:16px;">Mua Tiếp</a>
-                            <a href="~/GioHang/DatHang" class="btn btn-success my-1" style="font-size: 16px;">Xác nhận thanh toán</a>
+                                <div class="cart-footer text-right">
+                                    <a href="~/SanPham/D_SanPham" class="btn btn-info my-1" style="font-size:16px;">Mua Tiếp</a>
+                                    @if (Model == null || Model.Count == 0)
+                                    {
+                                        
+                                        <a href="~/GioHang/DatHang" class="btn btn-success my-1 disabled" style="font-size: 16px;">Xác nhận thanh toán</a>
+                                    }
+                                    else
+                                    {
+                                        <a href="~/GioHang/DatHang" class="btn btn-success my-1 " style="font-size: 16px;">Xác nhận thanh toán</a>
+                                    }
 
 
-                        </div>
+                                </div>
                             }
 
                         </div>

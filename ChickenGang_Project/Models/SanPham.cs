@@ -27,6 +27,7 @@
         public string TenSP { get; set; }
 
         [DisplayName("Đơn giá")]
+        [DisplayFormat(DataFormatString = "{0:C0}", ApplyFormatInEditMode = true)]
         public decimal? DonGia { get; set; }
 
         [DisplayName("Ngày cập nhật")]

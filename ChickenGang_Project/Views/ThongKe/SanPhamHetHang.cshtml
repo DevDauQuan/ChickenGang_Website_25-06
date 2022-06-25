@@ -59,7 +59,15 @@
                             <img src="\@Html.DisplayFor(modelItem => item.HinhAnh)" width="200" />
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.SoLuongTon)
+                            @if (item.DaXoa != 1)
+                            {
+
+                                @Html.DisplayFor(modelItem => item.SoLuongTon)
+                            }
+                            else
+                            {
+                                <p style="color:red">Ngừng phục vụ</p>
+                            }
                         </td>
                         <td>
                             @Html.ActionLink("Cập nhật", "Edit", "Admin", new { id = item.MaSP }, new { @class = "btn btn-success" })

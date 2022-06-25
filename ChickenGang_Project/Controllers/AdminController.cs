@@ -18,15 +18,11 @@ namespace ChickenGang_Project.Controllers
         public ActionResult Index()
         {
             //var sp = db.SanPhams.ToList();
-            var sp = db.SanPhams.Where(s => s.DaXoa != 1).ToList();
+            var sp = db.SanPhams.ToList();
             return View(sp);
         }
 
-        public ActionResult SanPhamDaXoa()
-        {
-            var D_SanPham = db.SanPhams.Where(s => s.DaXoa == 1).First();
-            return View(D_SanPham);
-        }
+
 
 
         public ActionResult Detail(int id)
@@ -78,11 +74,11 @@ namespace ChickenGang_Project.Controllers
             {
                 if (Convert.ToInt32(E_soluongton) < 0)
                 {
-                    ViewBag.ThongBao = "Phải nhập số lượng dương!";
+                    ViewBag.ThongBao = "Phải nhập số lượng không âm!";
                 }
                 else if (Convert.ToDecimal(E_dongia) < 0)
                 {
-                    ViewBag.ThongBao = "Đơn giá phải là dương!";
+                    ViewBag.ThongBao = "Đơn giá phải không âm!";
                 }
                 else
                 {
@@ -93,6 +89,11 @@ namespace ChickenGang_Project.Controllers
                     E_sp.Mota = E_mota;
                     E_sp.Mota2 = E_mota1;
                     E_sp.Mota3 = E_mota2;
+                    if (E_sp.SoLuongTon > 0)
+                    {
+                        E_sp.DaXoa = 0;
+                    }
+
                     UpdateModel(E_sp);
                     db.SaveChanges();
                     return RedirectToAction("Index");
@@ -152,7 +153,8 @@ namespace ChickenGang_Project.Controllers
                 {
                     ViewBag.ThongBao = "Đơn giá phải là dương!";
                 }
-                else {
+                else
+                {
                     s.TenSP = E_tensach.ToString();
                     s.HinhAnh = E_hinh.ToString();
                     s.DonGia = Convert.ToDecimal(E_dongia);
@@ -200,7 +202,7 @@ namespace ChickenGang_Project.Controllers
         }
 
 
-       
+
 
         public ActionResult Edit_ThanhVien(int id)
         {
@@ -240,7 +242,7 @@ namespace ChickenGang_Project.Controllers
                 return RedirectToAction("Index");
             }
             return this.Edit(id);
-            }
+        }
         #endregion
     }
 }
