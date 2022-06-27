@@ -83,8 +83,7 @@ namespace ChickenGang_Project.Controllers
 
         public ActionResult ExportToExcel()
         {
-            var doctors = from m in db.DonDatHangs
-                          select m;
+            var ds_DDH = db.DonDatHangs.ToList();
 
             byte[] fileContents;
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
@@ -99,7 +98,7 @@ namespace ChickenGang_Project.Controllers
             Sheet.Cells["G1"].Value = "Total";
 
             int row = 2;
-            foreach (var item in doctors)
+            foreach (var item in ds_DDH)
             {
               
                 Sheet.Cells[string.Format("A{0}", row)].Value = item.GetTenKh(item);

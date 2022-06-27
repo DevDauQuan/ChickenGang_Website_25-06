@@ -86,7 +86,6 @@ namespace ChickenGang_Project.Models
                 smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
                 smtp.Timeout = 20000;
                 smtp.Send(message);
-
             }
         }
     }
