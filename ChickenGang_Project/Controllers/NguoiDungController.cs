@@ -79,7 +79,7 @@ namespace ChickenGang_Project.Controllers
                         tv.SoDienThoai = SoDienThoai;
                         tv.CauHoi = CauHoi;
                         tv.CauTraLoi = CauTraLoi;
-                        tv.MaLoaiTV = 1;
+                        tv.MaLoaiTV = null;
                         var mail = new MailInfo();
                         mail.SendEmail(Email, HoTen);
                         db.Configuration.ValidateOnSaveEnabled = false;
@@ -363,9 +363,9 @@ namespace ChickenGang_Project.Controllers
                 var user = new ThanhVien();
                 user.TaiKhoan = email;
                 user.Email = email;
-                user.LoaiAccount = "0";
+                user.LoaiAccount = null;
                 user.HoTen = firstname + " " + middlename + " " + lastname;
-                user.MaLoaiTV = 0;
+                user.MaLoaiTV = 1;
 
 
                 
@@ -433,7 +433,8 @@ namespace ChickenGang_Project.Controllers
 
             if (!authResult.IsSuccessful)
             {
-                return Redirect(Url.Action("Account", "Login"));
+                return RedirectToAction("Index", "Home");
+                //return Redirect(Url.Action("Account", "Login"));
             }
 
             // User has logged in with provider successfully
@@ -450,7 +451,7 @@ namespace ChickenGang_Project.Controllers
             var user = new ThanhVien();
             user.TaiKhoan = Email;
             user.Email = Email;
-            user.LoaiAccount = "1";
+            user.LoaiAccount = null;
             user.HoTen = ProviderUserName;
             user.MaLoaiTV = 1;
 

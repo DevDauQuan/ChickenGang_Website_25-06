@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<ChickenGang_Project.Models.DonDatHang>
 @{ 
     ViewBag.Title = "Index";
-    Layout = "~/Views/Layout/AdminLayout.cshtml"; 
+       Layout = "~/Views/Layout/AdminLayout.cshtml";
   }
 
 
@@ -74,10 +74,10 @@
             </div>
             <div class="col-md-3 mb-3">
                 <div>
-                          <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("ExportToExcel", "ThongKe")'" style="padding:60.5px;">Xuât file báo cáo</button>
-                    </div>
+                    <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("ExportToExcel", "ThongKe")'" style="padding:60.5px;">Xuât file báo cáo</button>
                 </div>
             </div>
+        </div>
         <div class="row">
             <div class="col-md-12 mb-3">
                 <div class="card">
@@ -153,14 +153,7 @@
                                             </td>
                                         </tr>
                                     }
-                                    <tr style-"font-weight:bold; text-align:right; color:red">
-                                        <td colspan="2"> </td>
-                                        <td colspan="2"> </td>
-                                        <td colspan="5">
-                                            Tổng Tiền:
-                                            @String.Format("{0:0,0}", @ViewBag.TongDoanhThu) VNĐ
-                                        </td>
-                                    </tr>
+                               
 
                                 </tbody>
 

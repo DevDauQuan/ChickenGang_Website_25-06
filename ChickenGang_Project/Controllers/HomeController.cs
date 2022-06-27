@@ -46,24 +46,24 @@ namespace ChickenGang_Project.Controllers
         }
 
 
-        public void PhanQuyen(string TaiKhoan, string Quyen)
-        {
-            FormsAuthentication.Initialize();
+        //public void PhanQuyen(string TaiKhoan, string Quyen)
+        //{
+        //    FormsAuthentication.Initialize();
 
-            var ticket = new FormsAuthenticationTicket(1,
-                                                TaiKhoan,
-                                                DateTime.Now,
-                                                DateTime.Now.AddHours(3),
-                                                false,
-                                                Quyen,
-                                                FormsAuthentication.FormsCookiePath);
+        //    var ticket = new FormsAuthenticationTicket(1,
+        //                                        TaiKhoan,
+        //                                        DateTime.Now,
+        //                                        DateTime.Now.AddHours(3),
+        //                                        false,
+        //                                        Quyen,
+        //                                        FormsAuthentication.FormsCookiePath);
 
-            var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, FormsAuthentication.Encrypt(ticket));
+        //    var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, FormsAuthentication.Encrypt(ticket));
 
-            if(ticket.IsPersistent) cookie.Expires = ticket.Expiration;
+        //    if(ticket.IsPersistent) cookie.Expires = ticket.Expiration;
 
-            Response.Cookies.Add(cookie);
-        }
+        //    Response.Cookies.Add(cookie);
+        //}
         public ActionResult DangXuat()
         {
             Session["TaiKhoan"] = null;

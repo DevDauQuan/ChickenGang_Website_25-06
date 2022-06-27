@@ -1,0 +1,10 @@
+Review Giao diện
+Tìm kiếm sản phẩm 
+đăng kí
+khác biệt giữa vãng lai và thành viên
+đặt hàng (hình thức thanh toán)
+admin {
+	thống kê
+	quản lí sản phẩm (sửa, xóa)
+	sản phẩm hết hàng.
+}

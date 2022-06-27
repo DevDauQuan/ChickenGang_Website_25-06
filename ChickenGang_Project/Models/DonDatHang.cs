@@ -60,7 +60,6 @@
             var user = db.DonDatHangs.SingleOrDefault(x => x.MaDDH == ct.MaDDH);
             if (user == null)
             {
-
                 return null;
             }
             else

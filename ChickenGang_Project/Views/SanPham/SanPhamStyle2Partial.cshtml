@@ -6,27 +6,32 @@
 
     @foreach (var item in Model)
     {
-<div class="product_item-food col-md-3">
-    <img src="~/@item.HinhAnh" alt="">
+        if (item.DaXoa != 1)
+        {
 
-    <div class="product_item-food-body">
-        <h1>@item.TenSP</h1>
-        <p>@item.DonGia</p>
-        <ul>
-            <li>@item.Mota</li>
-        </ul>
-    </div>
+            <div class="product_item-food col-md-3">
+                <img src="~/@item.HinhAnh" alt="">
 
-    <div class="product_item-food-btn ">
-        <div class="btn col-2">
-            <a href="~/SanPham/Detail/@item.MaSP">TÙY CHỈNH</a>
-        </div>
+                <div class="product_item-food-body">
+                    <h1>@item.TenSP</h1>
+                    <p>@item.DonGia</p>
+                    <ul>
+                        <li>@item.Mota</li>
+                    </ul>
+                </div>
 
-        <div class="btn btn--order col-2">
+                <div class="product_item-food-btn ">
+                    <div class="btn col-2">
+                        <a href="~/SanPham/Detail/@item.MaSP">TÙY CHỈNH</a>
+                    </div>
 
-            <a href="@Url.Action("ThemGioHang", "GioHang", new { @id = item.MaSP, @strURL = Request.Url.ToString()})">ĐẶT HÀNG</a>
-        </div>
-    </div>
-</div>}
+                    <div class="btn btn--order col-2">
+
+                        <a href="@Url.Action("ThemGioHang", "GioHang", new { @id = item.MaSP, @strURL = Request.Url.ToString() })">ĐẶT HÀNG</a>
+                    </div>
+                </div>
+            </div>
+        }
+    }
 
 </div>
